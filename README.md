@@ -1,6 +1,9 @@
 ### Conditional Variational Autoencoder(CVAE)
+
 Conditional Variational Autoencoder(CVAE)[^1]是Variational Autoencoder(VAE)[^2]的扩展，在VAE中没有办法对生成的数据加以限制，所以如果在VAE中想生成特定的数据是办不到的。比如在mnist手写数字中，我们想生成特定的数字2，VAE就无能为力了。
 因此，CVAE通过对潜层变量和输入数据施加约束，可以生成在某种约束条件下的数据。
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 
 在VAE中目标函数如下所示：
 $$
@@ -15,6 +18,7 @@ $$
 潜层变量z的分布变成了条件概率分布P(z|X,y), 对解码器来说生成的样本也变成了条件概率分布Q(X|z, y)。
 
 ### CVAE的实现
+
 本例使用mnist数据集，在VAE的基础上将标签y进行one-hot编码，之后和数据样本进行连接作为输入，在解码时，将潜层变量z和标签y的one-hot编码进行连接，以这种方式实现上述的条件概率分布。
 - - -
 [^1]: Sohn, Kihyuk, Honglak Lee, and Xinchen Yan. “Learning Structured Output Representation using Deep Conditional Generative Models.” Advances in Neural Information Processing Systems. 2015.
