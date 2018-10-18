@@ -18,7 +18,21 @@ Conditional Variational Autoencoder(CVAE)[^1]是Variational Autoencoder(VAE)[^2]
 ### CVAE的实现
 
 本例使用mnist数据集，在VAE的基础上将标签y进行one-hot编码，之后和数据样本进行连接作为输入，在解码时，将潜层变量z和标签y的one-hot编码进行连接，以这种方式实现上述的条件概率分布。
+
+### 实验结果
+
+- 随机采样不同标签，模型在不同的训练阶段生成的结果如下：
+
+![条件vae生成结果](results/cvae.gif)
+
+- 模型在训练过程中对输入样本重建的结果
+
+![](./results/reconstruction.gif)
+
+
+
 - - -
 [^1]: Sohn, Kihyuk, Honglak Lee, and Xinchen Yan. “Learning Structured Output Representation using Deep Conditional Generative Models.” Advances in Neural Information Processing Systems. 2015.
 
 [^2]: Kingma, Diederik P., and Max Welling. "Auto-encoding variational bayes." arXiv preprint arXiv:1312.6114 (2013).
+
