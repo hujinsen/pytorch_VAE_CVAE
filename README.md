@@ -5,13 +5,13 @@ Conditional Variational Autoencoder(CVAE)[^1]是Variational Autoencoder(VAE)[^2]
 
 在VAE中目标函数如下所示：
 
-![](http://latex.codecogs.com/gif.latex?\\log P ( X ) - D _ { K L } [ Q ( z | X ) \| P ( z | X ) ] = E [ \log P ( X | z ) ] - D _ { K L } [ Q ( z | X ) \| P ( z ) ])
+![\log P ( X ) - D _ { K L } [ Q ( z | X ) \| P ( z | X ) ] = E [ \log P ( X | z ) ] - D _ { K L } [ Q ( z | X ) \| P ( z ) ]{\color{Red} }](http://latex.codecogs.com/gif.latex?%5Clog%20P%20%28%20X%20%29%20-%20D%20_%20%7B%20K%20L%20%7D%20%5B%20Q%20%28%20z%20%7C%20X%20%29%20%5C%7C%20P%20%28%20z%20%7C%20X%20%29%20%5D%20%3D%20E%20%5B%20%5Clog%20P%20%28%20X%20%7C%20z%20%29%20%5D%20-%20D%20_%20%7B%20K%20L%20%7D%20%5B%20Q%20%28%20z%20%7C%20X%20%29%20%5C%7C%20P%20%28%20z%20%29%20%5D%7B%5Ccolor%7BRed%7D%20%7D)
 
 这个目标函数（主要考虑变分下界）要使输入数据经过编码后的潜层变量的分布尽量服从某种先验分布P(Z),并且最小化重建损失。在这个模型中，编码器直接基于输入X来建模潜层变量z，而不考虑潜层输入X的类型（标签），解码器直接基于潜层变量z来重建X，假设得到X1，并没有将要获得那种类型的X1考虑在内。
 
 对VAE进行改进使其可以基于某种约束来生成对应的样本。以mnist手写数字为例，将数字的标签y考虑在内，即编码器为Q(z|X, y), 解码器为P(X|z, y)。上述模型可以写成下面的形式
 
-![](http://latex.codecogs.com/gif.latex?\\log P ( X | y ) - D _ { K L } [ Q ( z | X ,y ) \| P ( z | X ,y ) ] = E [ \log P ( X | z ,y ) ] - D _ { K L } [ Q ( z | X ,y ) \| P ( z | y ) ])
+![\log P ( X | y ) - D _ { K L } [ Q ( z | X ,y ) \| P ( z | X ,y ) ] = E [ \log P ( X | z ,y ) ] - D _ { K L } [ Q ( z | X ,y ) \| P ( z | y ) ]](http://latex.codecogs.com/gif.latex?%5Clog%20P%20%28%20X%20%7C%20y%20%29%20-%20D%20_%20%7B%20K%20L%20%7D%20%5B%20Q%20%28%20z%20%7C%20X%20%2Cy%20%29%20%5C%7C%20P%20%28%20z%20%7C%20X%20%2Cy%20%29%20%5D%20%3D%20E%20%5B%20%5Clog%20P%20%28%20X%20%7C%20z%20%2Cy%20%29%20%5D%20-%20D%20_%20%7B%20K%20L%20%7D%20%5B%20Q%20%28%20z%20%7C%20X%20%2Cy%20%29%20%5C%7C%20P%20%28%20z%20%7C%20y%20%29%20%5D)
 
 潜层变量z的分布变成了条件概率分布P(z|X,y), 对解码器来说生成的样本也变成了条件概率分布Q(X|z, y)。
 
